@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const Index = () => {
   const equipment = [
@@ -95,7 +96,7 @@ const Index = () => {
       <section className="relative bg-gradient-to-r from-secondary to-gray-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <AnimatedSection animation="fade-right">
               <h1 className="text-4xl lg:text-6xl font-bold mb-6">
                 Профессиональное оборудование для 
                 <span className="text-primary"> пожарной безопасности</span>
@@ -114,14 +115,16 @@ const Index = () => {
                   Рассчитать проект
                 </Button>
               </div>
-            </div>
-            <div className="flex justify-center">
-              <img 
-                src="/img/b320d937-ddc5-4198-963b-6f8aef89c683.jpg" 
-                alt="Профессиональное пожарное оборудование" 
-                className="rounded-lg shadow-2xl max-w-md w-full"
-              />
-            </div>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-left" delay={300}>
+              <div className="flex justify-center">
+                <img 
+                  src="/img/b320d937-ddc5-4198-963b-6f8aef89c683.jpg" 
+                  alt="Профессиональное пожарное оборудование" 
+                  className="rounded-lg shadow-2xl max-w-md w-full"
+                />
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -129,39 +132,45 @@ const Index = () => {
       {/* Equipment Section */}
       <section id="equipment" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection animation="fade-up" className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
               Каталог оборудования
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Широкий ассортимент сертифицированного оборудования от ведущих производителей
             </p>
-          </div>
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {equipment.map((item, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardHeader>
-                  <div className="flex items-center space-x-3 mb-2">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <Icon name={item.icon} size={24} className="text-primary" />
+              <AnimatedSection 
+                key={index} 
+                animation="fade-up" 
+                delay={index * 100}
+              >
+                <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <Icon name={item.icon} size={24} className="text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-lg">{item.title}</CardTitle>
+                        <span className="text-sm text-gray-500">{item.category}</span>
+                      </div>
                     </div>
-                    <div>
-                      <CardTitle className="text-lg">{item.title}</CardTitle>
-                      <span className="text-sm text-gray-500">{item.category}</span>
-                    </div>
-                  </div>
-                  <CardDescription className="text-base">
-                    {item.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button variant="outline" className="w-full hover:bg-primary hover:text-white">
-                    <Icon name="Eye" size={16} className="mr-2" />
-                    Подробнее
-                  </Button>
-                </CardContent>
-              </Card>
+                    <CardDescription className="text-base">
+                      {item.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button variant="outline" className="w-full hover:bg-primary hover:text-white">
+                      <Icon name="Eye" size={16} className="mr-2" />
+                      Подробнее
+                    </Button>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -170,28 +179,34 @@ const Index = () => {
       {/* Services Section */}
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection animation="fade-up" className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
               Наши услуги
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Комплексный подход к обеспечению пожарной безопасности
             </p>
-          </div>
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Icon name={service.icon} size={32} className="text-white" />
-                  </div>
-                  <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                  <CardDescription className="text-base">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+              <AnimatedSection 
+                key={index} 
+                animation="scale-in" 
+                delay={index * 150}
+              >
+                <Card className="text-center hover:shadow-lg transition-all duration-300 h-full">
+                  <CardHeader>
+                    <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Icon name={service.icon} size={32} className="text-white" />
+                    </div>
+                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                    <CardDescription className="text-base">
+                      {service.description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -201,22 +216,22 @@ const Index = () => {
       <section className="py-20 bg-secondary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div>
+            <AnimatedSection animation="fade-up" delay={0}>
               <div className="text-4xl font-bold text-primary mb-2">500+</div>
               <div className="text-lg">Выполненных проектов</div>
-            </div>
-            <div>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-up" delay={100}>
               <div className="text-4xl font-bold text-primary mb-2">15</div>
               <div className="text-lg">Лет на рынке</div>
-            </div>
-            <div>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-up" delay={200}>
               <div className="text-4xl font-bold text-primary mb-2">1000+</div>
               <div className="text-lg">Довольных клиентов</div>
-            </div>
-            <div>
+            </AnimatedSection>
+            <AnimatedSection animation="fade-up" delay={300}>
               <div className="text-4xl font-bold text-primary mb-2">24/7</div>
               <div className="text-lg">Техподдержка</div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -224,62 +239,68 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contacts" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <AnimatedSection animation="fade-up" className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">
               Свяжитесь с нами
             </h2>
             <p className="text-xl text-gray-600">
               Готовы ответить на ваши вопросы и предложить лучшие решения
             </p>
-          </div>
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Phone" size={32} className="text-white" />
-                </div>
-                <CardTitle>Телефон</CardTitle>
-                <CardDescription className="text-lg">
-                  +7 (495) 123-45-67<br/>
-                  +7 (800) 555-01-02
-                </CardDescription>
-              </CardHeader>
-            </Card>
+            <AnimatedSection animation="fade-up" delay={0}>
+              <Card className="text-center h-full">
+                <CardHeader>
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Phone" size={32} className="text-white" />
+                  </div>
+                  <CardTitle>Телефон</CardTitle>
+                  <CardDescription className="text-lg">
+                    +7 (495) 123-45-67<br/>
+                    +7 (800) 555-01-02
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </AnimatedSection>
             
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Mail" size={32} className="text-white" />
-                </div>
-                <CardTitle>Email</CardTitle>
-                <CardDescription className="text-lg">
-                  info@pozhbezopasnost.ru<br/>
-                  sales@pozhbezopasnost.ru
-                </CardDescription>
-              </CardHeader>
-            </Card>
+            <AnimatedSection animation="fade-up" delay={100}>
+              <Card className="text-center h-full">
+                <CardHeader>
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Mail" size={32} className="text-white" />
+                  </div>
+                  <CardTitle>Email</CardTitle>
+                  <CardDescription className="text-lg">
+                    info@pozhbezopasnost.ru<br/>
+                    sales@pozhbezopasnost.ru
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </AnimatedSection>
             
-            <Card className="text-center">
-              <CardHeader>
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="MapPin" size={32} className="text-white" />
-                </div>
-                <CardTitle>Адрес</CardTitle>
-                <CardDescription className="text-lg">
-                  г. Москва, ул. Промышленная, 15<br/>
-                  БЦ "Пожарный", оф. 301
-                </CardDescription>
-              </CardHeader>
-            </Card>
+            <AnimatedSection animation="fade-up" delay={200}>
+              <Card className="text-center h-full">
+                <CardHeader>
+                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="MapPin" size={32} className="text-white" />
+                  </div>
+                  <CardTitle>Адрес</CardTitle>
+                  <CardDescription className="text-lg">
+                    г. Москва, ул. Промышленная, 15<br/>
+                    БЦ "Пожарный", оф. 301
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </AnimatedSection>
           </div>
           
-          <div className="text-center mt-12">
+          <AnimatedSection animation="scale-in" delay={400} className="text-center mt-12">
             <Button size="lg" className="bg-primary hover:bg-primary/90">
               <Icon name="MessageCircle" size={20} className="mr-2" />
               Получить консультацию
             </Button>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
